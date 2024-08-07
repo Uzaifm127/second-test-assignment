@@ -31,14 +31,15 @@ const Main = ({ errorMessage }: { errorMessage: string | undefined }) => {
       fetcher(`/api/calculation/get-all?t=${Date.now()}`, "GET", {}),
   });
 
-  console.log(getAllQuery);
+  console.log(getAllQuery.data);
+  console.log(getAllQuery.isFetching);
+  console.log(getAllQuery.error);
 
   const mutation = useMutation({
     mutationFn: async (postInfo: PostInfo) =>
       fetcher("/api/calculation/start", "POST", postInfo),
 
-    onSuccess: async () =>
-      await queryClient.invalidateQueries({ queryKey: ["get-all-calc"] }),
+    onSuccess: async () => getAllQuery.refetch(),
 
     onError: (error) => {
       setError(error.message);
