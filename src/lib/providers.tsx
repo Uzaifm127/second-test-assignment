@@ -5,12 +5,12 @@ import React, { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      // This is to prevent the immediate refetch in SSR.
-      staleTime: 60 * 1000,
-    },
-  },
+  // defaultOptions: {
+  //   queries: {
+  //     // This is to prevent the immediate refetch in SSR.
+  //     staleTime: 60 * 1000,
+  //   },
+  // },
 });
 
 const Providers = ({ children }: { children: ReactNode }) => {
