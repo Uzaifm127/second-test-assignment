@@ -127,6 +127,7 @@ const Main = ({ errorMessage }: { errorMessage: string | undefined }) => {
                       calculation={""}
                       replyTo={""}
                       canReply={username !== post.postOwner}
+                      createdAt={new Date(post.createdAt)}
                     />
                     {replies.length ? (
                       replies.map((reply) => (
@@ -139,6 +140,7 @@ const Main = ({ errorMessage }: { errorMessage: string | undefined }) => {
                           calculation={reply.calculation}
                           replyTo={reply.replyTo}
                           canReply={username !== reply.replyOwner}
+                          createdAt={new Date(reply.createdAt)}
                         />
                       ))
                     ) : (

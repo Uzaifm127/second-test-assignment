@@ -54,7 +54,7 @@ const CreateAccount = () => {
     <>
       <Header loading={mutation.isPending} />
       <main>
-        <div className="w-96 mx-auto mt-20">
+        <div className="w-80 sm:w-96 mx-auto mt-20">
           <h2 className="text-3xl mb-10 font-medium text-center">
             Create your account
           </h2>

@@ -31,7 +31,7 @@ const HomePage = () => {
 
   if (getMeQuery.isLoading || getMeQuery.isFetching) {
     return (
-      <h1 className="text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse font-medium">
+      <h1 className="text-3xl md:text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse font-medium">
         Loading the data...
       </h1>
     );

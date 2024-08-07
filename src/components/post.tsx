@@ -3,7 +3,7 @@ import { fetcher } from "@/lib/fetcher";
 import { Operation, ReplyInfo } from "@/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 const options = ["Addition", "Subtract", "Multiply", "Divide"].map(
@@ -18,6 +18,7 @@ const Post = ({
   calculation,
   replyTo,
   canReply,
+  createdAt,
 }: {
   loading: boolean;
   calculatedNumber: number;
@@ -26,7 +27,12 @@ const Post = ({
   calculation: string;
   replyTo: string;
   canReply: boolean;
+  createdAt: Date;
 }) => {
+  const timestamp = `${createdAt.getDate()}.${
+    createdAt.getMonth() + 1
+  }.${createdAt.getFullYear()} ○ ${createdAt.toLocaleTimeString()}`;
+
   const btnDisableClass = "cursor-not-allowed pointer-events-none opacity-55";
 
   const { authenticated, username } = useAppContext()!;
@@ -52,10 +58,11 @@ const Post = ({
   return (
     <>
       <div
-        className={`border-2 my-4 px-4 py-3 w-1/3 rounded-lg ${
-          calculation && "bg-gray-100 ml-10"
+        className={`border-2 my-4 px-3 py-2 sm:px-4 sm:py-3 w-80 sm:w-96 xl:w-1/3 rounded-lg ${
+          calculation && "bg-gray-100 ml-5 sm:ml-10"
         }`}
       >
+        <div className="ml-auto text-gray-500">{timestamp}</div>
         {calculation && (
           <div className="mb-1">
             ReplyTo{" "}
@@ -63,7 +70,9 @@ const Post = ({
               @{replyTo}
             </span>{" "}
             for{" "}
-            <span className="ml-2 text-lg text-gray-500">{calculation.split(" ")[0]}</span>
+            <span className="ml-2 text-lg text-gray-500">
+              {calculation.split(" ")[0]}
+            </span>
           </div>
         )}
 
