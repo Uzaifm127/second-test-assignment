@@ -10,7 +10,7 @@ export const GET = async (req: NextRequest) => {
     const token = req.cookies.get("token");
 
     if (!token) {
-      throw new Error("Unauthorized user");
+      // Don't do something here
     }
 
     const [calculationPost, calculationReply] = await Promise.all([
@@ -23,6 +23,7 @@ export const GET = async (req: NextRequest) => {
       calculationReply,
     });
   } catch (error: any) {
+    console.log(error);
     return NextResponse.json({ message: error.message }, { status: 400 });
   }
 };
