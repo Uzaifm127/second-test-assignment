@@ -16,7 +16,7 @@ export const GET = async (req: NextRequest) => {
         calculationPost,
         calculationReply,
       },
-      { headers: { "Cache-Control": "no-store" } }
+      { headers: { "Cache-Control": "no-store, max-age=0" } }
     );
   } catch (error: any) {
     return NextResponse.json({ message: error.message }, { status: 400 });
