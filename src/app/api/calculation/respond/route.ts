@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { ReplyInfo } from "@/types";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 // This line is to maximize the request timeout limit in vercel in production
@@ -19,6 +20,8 @@ export const POST = async (req: NextRequest) => {
         result,
       },
     });
+
+    revalidatePath("/");
 
     return NextResponse.json({ message: "Responded successfully" });
   } catch (error: any) {
