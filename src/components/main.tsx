@@ -27,7 +27,8 @@ const Main = ({ errorMessage }: { errorMessage: string | undefined }) => {
 
   const getAllQuery = useQuery({
     queryKey: ["get-all-calc"],
-    queryFn: async () => fetcher("/api/calculation/get-all", "GET", {}),
+    queryFn: async () =>
+      fetcher(`/api/calculation/get-all?t=${Date.now()}`, "GET", {}),
   });
 
   const mutation = useMutation({
