@@ -6,13 +6,6 @@ export const maxDuration = 60;
 
 export const GET = async (req: NextRequest) => {
   try {
-    // We don't need to check the authentication here but I'm doing because of Next js default caching behaviour in production which is giving me 304 otherwise.
-    const token = req.cookies.get("token");
-
-    if (!token) {
-      throw new Error("Unauthorized user");
-    }
-
     const [calculationPost, calculationReply] = await Promise.all([
       prisma.calculationPost.findMany(),
       prisma.calculationReply.findMany(),
@@ -23,7 +16,7 @@ export const GET = async (req: NextRequest) => {
         calculationPost,
         calculationReply,
       },
-      { headers: { "Cache-Control": "no-store, max-age=0" } }
+      { headers: { "Cache-Control": "no-store" } }
     );
   } catch (error: any) {
     return NextResponse.json({ message: error.message }, { status: 400 });
