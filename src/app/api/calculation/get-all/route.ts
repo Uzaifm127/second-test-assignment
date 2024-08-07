@@ -18,13 +18,10 @@ export const GET = async (req: NextRequest) => {
       prisma.calculationReply.findMany(),
     ]);
 
-    return NextResponse.json(
-      {
-        calculationPost,
-        calculationReply,
-      },
-      { headers: { "Cache-Control": "no-store, max-age=0" } }
-    );
+    return NextResponse.json({
+      calculationPost,
+      calculationReply,
+    });
   } catch (error: any) {
     return NextResponse.json({ message: error.message }, { status: 400 });
   }
