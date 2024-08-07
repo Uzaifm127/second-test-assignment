@@ -1,11 +1,18 @@
 import { prisma } from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 // This line is to maximize the request timeout limit in vercel in production
 export const maxDuration = 60;
 
-export const GET = async () => {
+export const GET = async (req: NextRequest) => {
   try {
+    // We don't need to check the authentication here but I'm doing because of Next js default caching behaviour in production which is giving me 304 otherwise.
+    const token = req.cookies.get("token");
+
+    if (!token) {
+      throw new Error("Unauthorized user");
+    }
+
     const [calculationPost, calculationReply] = await Promise.all([
       prisma.calculationPost.findMany(),
       prisma.calculationReply.findMany(),
