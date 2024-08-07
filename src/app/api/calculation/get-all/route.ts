@@ -11,11 +11,17 @@ export const GET = async () => {
       prisma.calculationReply.findMany(),
     ]);
 
-    return NextResponse.json({
-      calculationPost,
-      calculationReply,
-      timestamp: Date.now(),
-    });
+    return NextResponse.json(
+      {
+        calculationPost,
+        calculationReply,
+      },
+      {
+        headers: {
+          "Cache-Control": "no-store, must-revalidate",
+        },
+      }
+    );
   } catch (error: any) {
     return NextResponse.json({ message: error.message }, { status: 400 });
   }
