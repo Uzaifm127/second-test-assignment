@@ -23,8 +23,6 @@ const Main = ({ errorMessage }: { errorMessage: string | undefined }) => {
 
   const timerIdRef = useRef<NodeJS.Timeout | null>(null);
 
-  const queryClient = useQueryClient();
-
   const getAllQuery = useQuery({
     queryKey: ["get-all-calc"],
     queryFn: async () =>

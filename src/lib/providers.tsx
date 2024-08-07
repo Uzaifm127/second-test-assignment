@@ -9,7 +9,6 @@ const queryClient = new QueryClient({
     queries: {
       // This is to prevent the immediate refetch in SSR.
       staleTime: 60 * 1000,
-      refetchOnWindowFocus: false,
     },
   },
 });
