@@ -31,6 +31,8 @@ const Main = ({ errorMessage }: { errorMessage: string | undefined }) => {
       fetcher(`/api/calculation/get-all?t=${Date.now()}`, "GET", {}),
   });
 
+  console.log(getAllQuery);
+
   const mutation = useMutation({
     mutationFn: async (postInfo: PostInfo) =>
       fetcher("/api/calculation/start", "POST", postInfo),
