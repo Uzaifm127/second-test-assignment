@@ -14,6 +14,7 @@ export const GET = async () => {
     return NextResponse.json({
       calculationPost,
       calculationReply,
+      timestamp: Date.now(),
     });
   } catch (error: any) {
     return NextResponse.json({ message: error.message }, { status: 400 });
